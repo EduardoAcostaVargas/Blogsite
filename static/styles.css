@@ -11,6 +11,11 @@ h1{
 h2{
     text-align: center;
 }
+nav{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
 
 a{
     display:flex;
@@ -22,4 +27,41 @@ a{
 a:hover{
     transform: scale(1.20);
     transition: 0.5s ease-in-out;
+}
+
+#addBlog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* move content toward the top */
+    width: 90%;
+    max-width: 800px;
+    margin: 10px auto; /* small top margin */
+    padding-top: 8px;
+    box-sizing: border-box;
+}
+#title{
+    padding: 5px;
+}
+
+
+.btn-grad {background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%)}
+.btn-grad {
+    border: none;
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
 }
