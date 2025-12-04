@@ -2,12 +2,13 @@
 
 {% block content %}
 <h2>Add a New Blog</h2>
-<form method="POST" action="/submitBlog" id="addBlog">
-    <input type="text" id="title" name="title" required placeholder="Blog Title" required><br><br>
+<form method="POST" action="/addBlog" id="addBlog">
+    <input type="text" id="title" name="title" required placeholder="Blog Title"><br><br>
 
-    <input type="text" id="author" name="author" required placeholder="Author Name" required><br><br>
+    <input type="text" id="author" name="author" required placeholder="Author Name"><br><br>
 
-    <textarea id="content" name="content" rows="10" cols="50" required placeholder="Content" required></textarea><br><br>
+    <textarea id="content" name="content" rows="10" cols="50" required placeholder="Content"></textarea><br><br>
     
     <input type="submit" value="Submit Blog" class="btn-grad">
+</form>
 {% endblock  %}
