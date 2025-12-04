@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    
+    <h2>Blog Posts</h2>
+    <form method="GET" action="/blogs" id="blogList">
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="blog-post">
+                <h2>{{ blog.title }}</h2>
+                <p><em>by {{ blog.author }}</em></p>
+                <p>{{ blog.content }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No blog posts available.</p>
+    {% endif %}
+
+    <button class="btn-grad" onclick="location.href='{{ url_for('addBlog') }}'">Create Blog</button>
 {% endblock %}
