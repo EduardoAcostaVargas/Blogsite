@@ -4,7 +4,9 @@ body{
     color: white;
     background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 h1{
@@ -84,4 +86,145 @@ a:hover{
     text-decoration: none;
     box-shadow: 0 0 20px #eee;
     cursor: pointer;
+}
+
+#blogList{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   max-width: 900px;
+   margin: 20px auto;
+   padding: 0 15px;
+}
+
+.blog-post{
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.blog-post h2{
+    margin: 0 0 12px 0;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.6em;
+}
+
+.blog-post p{
+    margin: 8px 0;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.blog-post p em{
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* Home page styling */
+.home-container {
+    max-width: 980px;
+    margin: 28px auto;
+    padding: 32px 40px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+}
+
+.home-section {
+    padding: 0;
+    margin-bottom: 32px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: none;
+}
+
+.home-section:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.home-section h2 {
+    margin: 0 0 14px 0;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    font-size: 1.8em;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.home-section h3 {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 20px 0 10px 0;
+    font-size: 1.3em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.home-section p,
+.home-section ul,
+.home-section li {
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.7;
+    margin: 0 0 12px 0;
+    font-size: 1.05em;
+}
+
+.home-section ul {
+    padding-left: 1.3rem;
+    margin-top: 10px;
+}
+
+.home-section li {
+    margin-bottom: 8px;
+}
+
+.home-create-wrap {
+    text-align: center;
+    margin: 32px 0 8px 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-grad.home-create {
+    padding: 14px 36px;
+    font-size: 1rem;
+    display: inline-block;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 640px){
+    .blog-post{
+        padding: 18px 20px;
+    }
+    .blog-post h2{
+        font-size: 1.3em;
+    }
+    .home-container {
+        padding: 20px;
+        margin: 14px;
+    }
+    .home-section {
+        margin-bottom: 24px;
+    }
+    .home-section h2 {
+        font-size: 1.5em;
+    }
 }
