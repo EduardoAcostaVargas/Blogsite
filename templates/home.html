@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-container">
+    <div class="home-section">
+        <h2>About</h2>
+        <p>
+        Welcome to our platform! 
+        This website is built with a focus on simplicity, usability, and flexibility, providing a smooth experience for creating, browsing, and interacting with blog content.
+         Below is an overview of the core technologies and features that power this site.
+        </p>
+    </div>
+
+    <div class="home-section">
+        <h2>Backend Framework</h2>
+        <p>
+        Our site uses a Flask backend, responsible for handling routing, rendering templates, and connecting all application logic. 
+        Flask's lightweight design makes it ideal for building scalable and efficient web applications.
+        </p>
+    </div>
+
+    <div class="home-section">
+        <h2>Dynamic Templating with Jinja2</h2>
+        <p>
+        All HTML pages are rendered using Jinja2 templates, enabling dynamic content, reusable layouts, and clean separation between logic and presentation. 
+        This ensures pages load efficiently and stay consistent throughout the site.
+        </p>
+    </div>
+
+    <div class="home-section">
+        <h2>Website Navigation and Routing</h2>
+        <p>
+        We provide intuitive navigation across all pages, supported by Flask routes that connect users to:
+        </p>
+        <ul>
+        <li>The homepage</li>
+        <li>Blog post lists</li>
+        <li>Individual blog posts</li>
+        <li>Comment sections</li>
+        </ul>
+    </div>
+
+    <div class="home-section">
+        <h2>CRUD Functionality</h2>
+        <p>
+        The platform supports full CRUD (Create, Read, Update, Delete) operations for several key features:
+        </p>
+
+        <h3>Blog Posts</h3>
+        <ul>
+        <li>A dedicated page to create new posts</li>
+        <li>A page to view all blog posts in one place</li>
+        </ul>
+
+        <h3>Comments</h3>
+        <ul>
+        <li>Each blog post includes a comment field, allowing visitors to enter and submit new comments</li>
+        <li>Comments are handled through backend routes that store and display feedback in real time</li>
+        </ul>
+        
+        <h3>Users</h3>
+        <ul>
+        <li>Routes exist to manage user-related actions, supporting the overall blog and commenting system</li>
+        </ul>
+    </div>
+
+    <div class="home-create-wrap">
+        <button class="btn-grad home-create" onclick="location.href='{{ url_for('addBlog') }}'">Create Blog</button>
+    </div>
+</div>
+{% endblock %}
