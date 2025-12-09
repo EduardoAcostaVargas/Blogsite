@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 app.config['POSTS'] = []  # Store blogs in memory
+app.config['COMMENTS'] = {}  # Store comments by blog index
 
 @app.route('/')
 def index():
@@ -35,5 +36,26 @@ def addBlog():
 
 @app.route('/Blogs', methods=['GET', 'POST'])
 def Blogs():
-    blogs = app.config['POSTS']  # Pass stored blogs to template
-    return render_template('blogs.html', blogs=blogs)
+    blogs = app.config['POSTS']
+    comments = app.config['COMMENTS']
+    return render_template('blogs.html', blogs=blogs, comments=comments)
+
+@app.route('/addComment/<int:blog_id>', methods=['POST'])
+def add_comment(blog_id):
+    commenter = request.form.get('commenter', 'Anonymous').strip()
+    comment_text = request.form.get('comment', '').strip()
+    
+    if not comment_text:
+        return "Comment cannot be empty!", 400
+    
+    # Initialize comments list for this blog if it doesn't exist
+    if blog_id not in app.config['COMMENTS']:
+        app.config['COMMENTS'][blog_id] = []
+    
+    # Add the comment
+    app.config['COMMENTS'][blog_id].append({
+        'commenter': commenter,
+        'text': comment_text
+    })
+    
+    return redirect(url_for('Blogs'))
