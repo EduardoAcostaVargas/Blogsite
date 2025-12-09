@@ -2,16 +2,39 @@
 
 {% block content %}
     <h2>Blog Posts</h2>
-    <form method="GET" action="/blogs" id="blogList">
+    <div id="blogList">
     {% if blogs %}
         {% for blog in blogs %}
             <div class="blog-post">
                 <h2>{{ blog.title }}</h2>
                 <p><em>by {{ blog.author }}</em></p>
                 <p>{{ blog.content }}</p>
+                
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h3>Comments</h3>
+                    {% if loop.index0 in comments and comments[loop.index0] %}
+                        {% for comment in comments[loop.index0] %}
+                            <div class="comment">
+                                <p class="comment-author">{{ comment.commenter }}</p>
+                                <p class="comment-text">{{ comment.text }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-comments">No comments yet. Be the first to comment!</p>
+                    {% endif %}
+                    
+                    <!-- Add Comment Form -->
+                    <form method="POST" action="/addComment/{{ loop.index0 }}" class="comment-form">
+                        <input type="text" name="commenter" placeholder="Your Name" required>
+                        <textarea name="comment" rows="3" placeholder="Write a comment..." required></textarea>
+                        <input type="submit" value="Post Comment" class="btn-grad">
+                    </form>
+                </div>
             </div>
         {% endfor %}
     {% else %}
         <p>No blog posts available.</p>
     {% endif %}
+    </div>
 {% endblock %}
