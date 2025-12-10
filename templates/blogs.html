@@ -7,16 +7,16 @@
         {% for blog in blogs %}
             <div class="blog-post">
                 <h2>{{ blog.title }}</h2>
-                <p><em>by {{ blog.author }}</em></p>
+                <p><em>by {{ blog.author }} on {{ blog.created_at.strftime('%B %d, %Y') }}</em></p>
                 <p>{{ blog.content }}</p>
                 
                 <!-- Comments Section -->
                 <div class="comments-section">
-                    <h3>Comments</h3>
-                    {% if loop.index0 in comments and comments[loop.index0] %}
-                        {% for comment in comments[loop.index0] %}
+                    <h3>Comments ({{ blog.comments|length }})</h3>
+                    {% if blog.comments %}
+                        {% for comment in blog.comments %}
                             <div class="comment">
-                                <p class="comment-author">{{ comment.commenter }}</p>
+                                <p class="comment-author">{{ comment.commenter }} • {{ comment.created_at.strftime('%b %d, %Y at %I:%M %p') }}</p>
                                 <p class="comment-text">{{ comment.text }}</p>
                             </div>
                         {% endfor %}
@@ -25,7 +25,7 @@
                     {% endif %}
                     
                     <!-- Add Comment Form -->
-                    <form method="POST" action="/addComment/{{ loop.index0 }}" class="comment-form">
+                    <form method="POST" action="/addComment/{{ blog.id }}" class="comment-form">
                         <input type="text" name="commenter" placeholder="Your Name" required>
                         <textarea name="comment" rows="3" placeholder="Write a comment..." required></textarea>
                         <input type="submit" value="Post Comment" class="btn-grad">
