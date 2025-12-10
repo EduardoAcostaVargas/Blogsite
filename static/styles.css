@@ -12,28 +12,62 @@ body{
 h1{
     text-align: center; 
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.30);
+    margin: 20px 0;
+    font-size: 2.5em;
+    letter-spacing: 1px;
 }
+
 h2{
     text-align: center;
 }
+
 nav{
-    margin: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 32px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 a{
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
+    font-size: 1.05em;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
 }
+
+a::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
 a:hover{
-    transform: scale(1.20);
-    transition: 0.7s ease;
-    text-shadow: 0 0 20px #eee;
+    transform: translateY(-2px);
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+a:hover::after{
+    width: 80%;
 }
 
 #addBlog{
@@ -287,6 +321,124 @@ a:hover{
     font-size: 0.9em;
 }
 
+.db-container {
+    max-width: 1200px;
+    margin: 28px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.db-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    margin-bottom: 24px;
+    backdrop-filter: blur(6px);
+}
+
+.db-section h2 {
+    margin: 0 0 18px 0;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.db-table {
+    overflow-x: auto;
+}
+
+.db-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.db-table th,
+.db-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.db-table th {
+    background: rgba(58, 96, 115, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.db-table td {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.db-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.comment-preview {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-delete {
+    padding: 6px 14px;
+    background: rgba(220, 20, 60, 0.7);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85em;
+    transition: background 0.3s ease;
+    display: inline-block;
+}
+
+.btn-delete:hover {
+    background: rgba(220, 20, 60, 0.9);
+    transform: none;
+    text-shadow: none;
+}
+
+.no-data {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+.db-actions {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    text-align: center;
+}
+
+.db-actions h2 {
+    margin: 0 0 18px 0;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+    .db-table {
+        font-size: 0.85em;
+    }
+    
+    .db-table th,
+    .db-table td {
+        padding: 8px;
+    }
+    
+    .comment-preview {
+        max-width: 150px;
+    }
+}
+
 @media (max-width: 640px){
     .blog-post{
         padding: 18px 20px;
@@ -306,5 +458,33 @@ a:hover{
     }
     .comment-form input[type="submit"]{
         align-self: stretch;
+    }
+}
+
+@media (max-width: 768px){
+    nav{
+        padding: 12px 20px;
+        gap: 24px;
+    }
+    
+    a{
+        font-size: 0.95em;
+        padding: 6px 12px;
+    }
+    
+    h1{
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px){
+    nav{
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    a{
+        font-size: 0.9em;
     }
 }
