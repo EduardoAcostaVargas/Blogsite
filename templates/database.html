@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="db-container">
+    <h1>Database Management</h1>
+    
+    <div class="db-section">
+        <h2>Blog Posts ({{ posts|length }})</h2>
+        {% if posts %}
+            <div class="db-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Created</th>
+                            <th>Comments</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <td>{{ post.id }}</td>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.author }}</td>
+                            <td>{{ post.created_at.strftime('%b %d, %Y') }}</td>
+                            <td>{{ post.comments|length }}</td>
+                            <td>
+                                <a href="/deletePost/{{ post.id }}" class="btn-delete" onclick="return confirm('Delete this post and all its comments?')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="no-data">No posts in database.</p>
+        {% endif %}
+    </div>
+    
+    <div class="db-section">
+        <h2>All Comments ({{ comments|length }})</h2>
+        {% if comments %}
+            <div class="db-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Commenter</th>
+                            <th>Comment</th>
+                            <th>Post ID</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comment in comments %}
+                        <tr>
+                            <td>{{ comment.id }}</td>
+                            <td>{{ comment.commenter }}</td>
+                            <td class="comment-preview">{{ comment.text[:50] }}{% if comment.text|length > 50 %}...{% endif %}</td>
+                            <td>{{ comment.post_id }}</td>
+                            <td>{{ comment.created_at.strftime('%b %d, %Y') }}</td>
+                            <td>
+                                <a href="/deleteComment/{{ comment.id }}" class="btn-delete" onclick="return confirm('Delete this comment?')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="no-data">No comments in database.</p>
+        {% endif %}
+    </div>
+    
+    <div class="db-section">
+        <h2>Users ({{ users|length }})</h2>
+        {% if users %}
+            <div class="db-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Created</th>
+                            <th>Comments</th>
+                            <th>Liked Posts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.created_at.strftime('%b %d, %Y') }}</td>
+                            <td>{{ user.comments|length }}</td>
+                            <td>{{ user.liked_posts|length }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="no-data">No users in database.</p>
+        {% endif %}
+    </div>
+    
+    <div class="db-actions">
+        <h2>Database Actions</h2>
+        <button class="btn-grad" onclick="location.href='/clearDatabase'" style="background-image: linear-gradient(to right, #8B0000 0%, #DC143C 51%, #8B0000 100%)">Clear All Data</button>
+    </div>
+</div>
+{% endblock %}
